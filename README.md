@@ -2,6 +2,8 @@
 
 Lavagna tattica animata per il rugby. La prima versione contiene X1 — Uscita esterna e X2 — Taglio interno.
 
+**App online:** https://brighel70.github.io/tactics-rugby/
+
 ## Struttura
 
 - `src/plays.js`: catalogo, formazioni iniziali, keyframe, passaggi e fasi.
@@ -34,12 +36,7 @@ La build è in `dist/`. Non aprire `index.html` direttamente come file: service 
 
 ## Pubblicazione con GitHub Pages
 
-Il workflow `.github/workflows/pages.yml` pubblica solo `dist/`, senza i file originali in `references/`. Gli URL sono relativi alla cartella del repository e funzionano su `https://<utente>.github.io/<repository>/`.
-
-1. Creare un repository GitHub vuoto, per esempio `tactics-rugby`, senza aggiungere file iniziali.
-2. Collegarlo e caricare il branch: `git remote add origin https://github.com/<utente>/tactics-rugby.git` e `git push -u origin main`.
-3. In **Settings → Pages → Build and deployment**, scegliere **GitHub Actions**.
-4. Attendere che il workflow **Publish TACTICS to GitHub Pages** sia completato; aprire l'URL HTTPS mostrato nel deployment.
+Il repository è `Brighel70/tactics-rugby`. A ogni push su `main`, il workflow `.github/workflows/pages.yml` esegue test e build, poi pubblica solo `dist/`. I file originali in `references/` restano locali. Gli URL relativi funzionano sotto `/tactics-rugby/`.
 
 ## Installazione mobile
 
