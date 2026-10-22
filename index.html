@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="TACTICS">
   <meta name="description" content="Lavagna tattica animata per il rugby, disponibile anche offline.">
   <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="apple-touch-icon" href="./icons/icon-180.png">
+  <link rel="apple-touch-icon" href="./icons/icon-t-180.png">
   <link rel="icon" type="image/svg+xml" href="./icons/icon.svg">
   <link rel="stylesheet" href="./src/styles.css">
   <title>TACTICS · Lavagna rugby</title>
@@ -18,10 +18,10 @@
   <main class="app">
     <header class="masthead">
       <div><div class="eyebrow">RUGBY / LAVAGNA TATTICA</div><h1>TACTICS<span class="brand-dot">.</span></h1><p>Giocate animate, una timeline precisa, ogni movimento sotto controllo.</p></div>
-      <div class="edition">PLAYBOOK <strong>01 / 02</strong></div>
+      <div class="edition">PLAYBOOK <strong id="playbook-index">01 / 04</strong></div>
     </header>
     <section class="library" aria-label="Seleziona una giocata">
-      <div class="section-label">ATTACCO TREQUARTI <span>02 GIOCATE</span></div>
+      <div class="section-label">ATTACCO TREQUARTI <span id="play-total">04 GIOCATE</span></div>
       <div id="play-list" class="play-list"></div>
     </section>
     <div class="workspace">
@@ -39,7 +39,7 @@
       <section class="pitch-panel" aria-label="Campo tattico">
         <div class="panel-heading"><div><span class="live-dot"></span><strong id="field-title">X1 / Uscita esterna</strong></div><span class="direction">DIREZIONE DI ATTACCO ↑</span></div>
         <div class="field-shell"><svg id="pitch" viewBox="0 0 700 850" role="img" aria-label="Campo da rugby con giocatori numerati e pallone"></svg></div>
-        <div class="pitch-footer"><span><i class="legend player-mark"></i>ATTACCANTI</span><span><i class="legend ball-mark"></i>PALLONE</span><span><i class="legend route-mark"></i>TRAIETTORIE</span></div>
+        <div class="pitch-footer"><span><i class="legend player-mark"></i>ATTACCANTI</span><span id="defense-legend" hidden><i class="legend defense-mark"></i>DIFESA</span><span><i class="legend ball-mark"></i>PALLONE</span><span><i class="legend route-mark"></i>TRAIETTORIE</span></div>
       </section>
       <section class="detail-panel">
         <div class="section-label">ANALISI DELLA GIOCATA <span id="play-code">X1</span></div>

@@ -3,7 +3,8 @@ import {stateAt,validatePlay,clamp,phaseIndex} from './engine.js';
 import {createField,renderField} from './field.js';
 
 const $=id=>document.getElementById(id);
-for(const play of Object.values(PLAYS)){
+const catalog=Object.values(PLAYS);
+for(const play of catalog){
   const errors=validatePlay(play);
   if(errors.length) throw new Error(`${play.id}: ${errors.join('; ')}`);
 }
@@ -40,13 +41,16 @@ function selectPlay(id){
   setPlaying(false);play=PLAYS[id];time=0;
   field=createField($('pitch'),play);
   $('field-title').textContent=`${play.id} / ${play.name}`;
+  $('defense-legend').hidden=!play.defense;
   $('play-code').textContent=play.id;
+  $('playbook-index').textContent=`${String(catalog.findIndex(item=>item.id===id)+1).padStart(2,'0')} / ${String(catalog.length).padStart(2,'0')}`;
   $('seek').max=String(Math.round(play.duration*100));
   document.querySelectorAll('.play-choice').forEach(button=>{const active=button.dataset.id===id;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));});
   renderPhases();render();
 }
 
-for(const item of Object.values(PLAYS)){
+$('play-total').textContent=`${String(catalog.length).padStart(2,'0')} GIOCATE`;
+for(const item of catalog){
   const button=document.createElement('button');button.type='button';button.className='play-choice';button.dataset.id=item.id;
   const code=document.createElement('span');code.className='play-code';code.textContent=item.id;
   const copy=document.createElement('span');copy.className='play-copy';

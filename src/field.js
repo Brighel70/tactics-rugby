@@ -1,4 +1,5 @@
 import {PLAYER_IDS,ROLES} from './plays.js';
+import {position} from './engine.js';
 const NS='http://www.w3.org/2000/svg';
 const svg=(tag,attributes={})=>{const node=document.createElementNS(NS,tag);for(const [name,value] of Object.entries(attributes))node.setAttribute(name,String(value));return node;};
 
@@ -24,14 +25,39 @@ export function createField(root,play){
   root.append(arrow);
   const routes=svg('g',{class:'routes'});
   for(const id of PLAYER_IDS){
-    const points=play.tracks[id].keys.map(k=>`${k.x},${k.y}`).join(' ');
+    const track=play.tracks[id];
+    const samples=track.smooth?track.keys.flatMap((key,index)=>{
+      if(index===track.keys.length-1) return [key];
+      const next=track.keys[index+1],steps=Math.ceil((next.t-key.t)/.1);
+      return Array.from({length:steps},(_,step)=>position(track,key.t+(next.t-key.t)*step/steps));
+    }):track.keys;
+    const points=samples.map(k=>`${k.x.toFixed(1)},${k.y.toFixed(1)}`).join(' ');
     routes.append(svg('polyline',{points,class:`route route-${id}`}));
   }
   root.append(routes);
+  const scrumY=play.scrumY??320;
   const scrum=svg('g',{class:'scrum'});
-  scrum.append(svg('ellipse',{cx:571,cy:320,rx:63,ry:66,fill:'#082d25','fill-opacity':.62,stroke:'#d5eeb4','stroke-width':2,'stroke-dasharray':'7 7'}));
-  for(const [x,y] of [[-20,-22],[0,-22],[20,-22],[-12,0],[12,0],[-20,24],[0,24],[20,24]]) scrum.append(svg('circle',{cx:571+x,cy:320+y,r:9,fill:'#76b9d8',stroke:'#e4f7fa','stroke-width':1.5}));
-  const scrumLabel=svg('text',{x:571,y:231,class:'scrum-label'});scrumLabel.textContent='MISCHIA';scrum.append(scrumLabel);root.append(scrum);
+  scrum.append(svg('ellipse',{cx:571,cy:play.defense?scrumY-37:scrumY,rx:play.defense?66:63,ry:play.defense?84:66,fill:'#082d25','fill-opacity':.62,stroke:'#d5eeb4','stroke-width':2,'stroke-dasharray':'7 7'}));
+  const defenderScrum=play.defense?svg('g',{class:'defender-scrum-group'}):null;
+  if(defenderScrum){
+    for(const [x,y] of play.defense.scrum) defenderScrum.append(svg('circle',{cx:x,cy:y,r:9,class:'defender-scrum'}));
+    scrum.append(defenderScrum);
+  }
+  for(const [x,y] of [[-20,-22],[0,-22],[20,-22],[-12,0],[12,0],[-20,24],[0,24],[20,24]]) scrum.append(svg('circle',{cx:571+x,cy:scrumY+y,r:9,fill:'#76b9d8',stroke:'#e4f7fa','stroke-width':1.5}));
+  const scrumLabel=svg('text',{x:571,y:play.defense?scrumY-132:scrumY-89,class:'scrum-label'});scrumLabel.textContent='MISCHIA';scrum.append(scrumLabel);root.append(scrum);
+  const defenderNodes={};
+  if(play.defense){
+    const defenders=svg('g',{class:'defenders','aria-label':'Schieramento difensivo'});
+    for(const id of PLAYER_IDS){
+      const {x,y}=position(play.defense.tracks[id],0);
+      const node=svg('g',{class:'defender',transform:`translate(${x} ${y})`,'aria-label':`Difensore ${id}: ${ROLES[id]}`});
+      const title=svg('title');title.textContent=`Difensore ${id}: ${ROLES[id]}`;
+      const number=svg('text',{class:'defender-number',y:1});number.textContent=id;
+      node.append(title,svg('circle',{r:16,class:'defender-disc'}),number);
+      defenders.append(node);defenderNodes[id]=node;
+    }
+    root.append(defenders);
+  }
   const passTrail=svg('path',{class:'pass-trail'});root.append(passTrail);
   const playerNodes={};
   for(const id of PLAYER_IDS){
@@ -42,11 +68,18 @@ export function createField(root,play){
     root.append(node);playerNodes[id]=node;
   }
   const ball=svg('g',{class:'ball'});ball.append(svg('ellipse',{rx:11,ry:7,fill:'#f5dfad',stroke:'#775534','stroke-width':2}),svg('path',{d:'M-5 -4 L5 4 M-2 -5 L8 2',stroke:'#956f42','stroke-width':1.4}));root.append(ball);
-  return {root,routes,passTrail,playerNodes,ball};
+  return {root,routes,passTrail,playerNodes,defenderNodes,defenderScrum,ball};
 }
 
 export function renderField(field,state,settings){
   field.routes.style.display=settings.routes?'':'none';
+  if(state.defenders){
+    field.defenderScrum.setAttribute('transform',`translate(0 ${state.scrumAdvance.toFixed(2)})`);
+    for(const id of PLAYER_IDS){
+      const node=field.defenderNodes[id],p=state.defenders[id];
+      node.setAttribute('transform',`translate(${p.x.toFixed(2)} ${p.y.toFixed(2)})`);
+    }
+  }
   for(const id of PLAYER_IDS){
     const node=field.playerNodes[id],p=state.players[id];
     node.setAttribute('transform',`translate(${p.x.toFixed(2)} ${p.y.toFixed(2)})`);

@@ -17,3 +17,9 @@
   .control-panel #seek{margin:2px 0 6px}
   .workspace>.detail-panel{padding:14px}
 }
+
+.defender-scrum{fill:#b5543e;stroke:#ffe2d0;stroke-width:1.5}
+.defender-disc{fill:#b5543e;stroke:#ffe2d0;stroke-width:2;filter:drop-shadow(0 3px 3px #10211a)}
+.defender-number{fill:#fff8f2;text-anchor:middle;dominant-baseline:middle;font-size:13px;font-weight:900}
+.defense-mark{background:#b5543e}
+.pitch-footer [hidden]{display:none}

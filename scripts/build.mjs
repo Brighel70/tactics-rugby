@@ -3,7 +3,7 @@ import {createHash} from 'node:crypto';
 const dest=new URL('../dist/',import.meta.url);
 await rm(dest,{recursive:true,force:true});
 for(const dir of ['src','icons']) await mkdir(new URL(dir+'/',dest),{recursive:true});
-for(const path of ['index.html','manifest.webmanifest','service-worker.js','src/styles.css','src/main.js','src/engine.js','src/field.js','src/plays.js','icons/icon.svg','icons/icon-180.png','icons/icon-192.png','icons/icon-512.png']) await copyFile(new URL('../'+path,import.meta.url),new URL(path,dest));
+for(const path of ['index.html','manifest.webmanifest','service-worker.js','src/styles.css','src/main.js','src/engine.js','src/field.js','src/plays.js','icons/icon.svg','icons/icon-t-180.png','icons/icon-t-192.png','icons/icon-t-512.png']) await copyFile(new URL('../'+path,import.meta.url),new URL(path,dest));
 const version=createHash('sha256');
 for(const path of ['index.html','manifest.webmanifest','src/styles.css','src/main.js','src/engine.js','src/field.js','src/plays.js']) version.update(await readFile(new URL(path,dest)));
 const stamp=version.digest('hex').slice(0,12);
