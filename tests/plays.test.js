@@ -30,11 +30,17 @@ test('X1 11 supports 15 and 9 reaches rear cover',()=>{
   assert.ok(end.players[9].y<PLAYS.X1.tracks[15].keys[0].y);
 });
 
-test('X2 11 runs straight before reception and 9 is right and behind',()=>{
+test('X2 11 runs straight before reception while 9 uses a separate right-side lane',()=>{
   const play=PLAYS.X2,reception=play.passes.at(-1).end;
   for(const t of [4.65,5.15,5.5,reception,6.3]) assert.equal(position(play.tracks[11],t).x,379);
   const atReceive=stateAt(play,reception);
-  assert.ok(atReceive.players[9].x>atReceive.players[11].x);
-  assert.ok(atReceive.players[9].y>atReceive.players[11].y);
+  const rightOffset=atReceive.players[9].x-atReceive.players[11].x;
+  assert.ok(rightOffset>=18&&rightOffset<=27,'il 9 deve essere 2–3 m a destra dell’11');
+  assert.ok(position(play.tracks[9],2.5).y<position(play.tracks[9],0).y,'il 9 avanza fin dalla fase iniziale');
+  for(let t=2;t<=6.2;t+=.05){
+    const nine=position(play.tracks[9],t),twelve=position(play.tracks[12],t);
+    assert.ok(Math.hypot(nine.x-twelve.x,nine.y-twelve.y)>42,`il 9 incrocia il 12 a ${t.toFixed(2)} s`);
+  }
+  assert.ok(position(play.tracks[9],7.5).y>=position(play.tracks[11],7.5).y,'l’11 supera il 9 dopo la ricezione');
   assert.ok(position(play.tracks[11],6.3).y<atReceive.players[11].y);
 });

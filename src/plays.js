@@ -50,7 +50,7 @@ export const PLAYS = {
   X2:{
     id:'X2',name:'Taglio interno',description:'Variante con l’11 che raddrizza prima della ricezione dal 13.',category:'trequarti',derivedFrom:'X1',duration,
     tracks:{...common,
-      9:track(9,[[0,568,435],[.7,568,435],[1.5,552,425],[2.02,541,428],[3.4,490,448],[4.65,453,461],[5.5,434,467],[5.98,424,470],[7.5,423,385],[9.65,421,262],[12.6,421,210]]),
+      9:track(9,[[0,568,435],[.7,566,434],[1.5,552,425],[2.02,537,414],[2.5,519,397],[3.4,485,375],[4.15,458,359],[4.65,439,350],[5.5,409,342],[5.98,400,340],[6.85,401,339],[7.5,402,340],[9.65,402,263],[12.6,402,209]]),
       11:track(11,[[0,568,591],[1,568,591],[1.5,545,582],[2.5,481,556],[3.4,418,532],[4.1,386,514],[4.35,379,508],[4.65,379,492],[5.15,379,470],[5.5,379,456],[5.98,379,438],[6.3,379,421],[6.85,379,388],[7.5,379,338],[8.4,379,278],[9.65,379,209],[12.6,379,155]]),
       13:track(13,[[0,238,605],[1.45,238,585],[2,238,562],[2.9,238,520],[3.4,238,496],[4.15,238,463],[4.65,238,442],[5.5,238,425],[5.98,238,418],[7.5,238,375],[12.6,238,369]]),
       15:track(15,[[0,240,743],[1.45,229,724],[2,210,690],[2.9,186,637],[3.4,174,599],[4.15,166,544],[4.65,164,516],[5.4,164,464],[6.3,164,425],[7.5,164,396],[9.65,164,362],[12.6,164,345]]),
@@ -59,8 +59,8 @@ export const PLAYS = {
     passes:[...initialPasses,{start:5.5,end:5.98,from:13,to:11}],
     phases:[...initialPhases,
       {start:4.8,title:'L’11 raddrizza la corsa',description:'L’11 ha completato la diagonale ed è già orientato verso la meta. Il 13 avanza circa due metri.'},
-      {start:5.5,title:'Il 13 serve l’11',description:'Il passaggio arriva all’indietro. L’11 riceve già in accelerazione verticale; il 9 è alla sua destra e leggermente arretrato.'},
-      {start:6.85,title:'Taglio interno',description:'L’11 prosegue diritto nello spazio creato dall’incrocio. Il 9 rimane una soluzione di sostegno.'}
+      {start:5.5,title:'Il 13 serve l’11',description:'Il passaggio arriva all’indietro. L’11 riceve già in accelerazione verticale; il 9 ha seguito una diagonale lenta davanti al 12 e si trova 2–3 metri alla sua destra.'},
+      {start:6.85,title:'Taglio interno',description:'L’11 prosegue diritto nello spazio creato dall’incrocio, supera il 9 e lo ritrova in sostegno sulla corsia alla propria destra.'}
     ]
   }
 };
