@@ -1,5 +1,5 @@
 const CACHE='tactics-__CACHE_VERSION__';
-const ASSETS=['./','./index.html','./manifest.webmanifest','./src/styles.css','./src/main.js','./src/engine.js','./src/plays.js','./src/field.js','./icons/icon.svg','./icons/icon-180.png','./icons/icon-192.png','./icons/icon-512.png'];
+const ASSETS=['./','./index.html','./manifest.webmanifest','./src/styles.css?v=__CACHE_VERSION__','./src/main.js?v=__CACHE_VERSION__','./src/engine.js?v=__CACHE_VERSION__','./src/plays.js?v=__CACHE_VERSION__','./src/field.js?v=__CACHE_VERSION__','./icons/icon.svg','./icons/icon-180.png','./icons/icon-192.png','./icons/icon-512.png'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('tactics-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()));});
 self.addEventListener('fetch',event=>{
