@@ -1,0 +1,11 @@
+import {mkdir,rm,copyFile,readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+const dest=new URL('../dist/',import.meta.url);
+await rm(dest,{recursive:true,force:true});
+for(const dir of ['src','icons']) await mkdir(new URL(dir+'/',dest),{recursive:true});
+for(const path of ['index.html','manifest.webmanifest','service-worker.js','src/styles.css','src/main.js','src/engine.js','src/field.js','src/plays.js','icons/icon.svg','icons/icon-180.png','icons/icon-192.png','icons/icon-512.png']) await copyFile(new URL('../'+path,import.meta.url),new URL(path,dest));
+const version=createHash('sha256');
+for(const path of ['index.html','manifest.webmanifest','src/styles.css','src/main.js','src/engine.js','src/field.js','src/plays.js']) version.update(await readFile(new URL(path,dest)));
+const sw=new URL('service-worker.js',dest);
+await writeFile(sw,(await readFile(sw,'utf8')).replace('__CACHE_VERSION__',version.digest('hex').slice(0,12)));
+console.log('Production build ready: dist/');

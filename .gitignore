@@ -1,0 +1,5 @@
+dist/
+node_modules/
+references/
+Lavagna_Rugby_*.html
+.DS_Store
