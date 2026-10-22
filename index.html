@@ -25,31 +25,31 @@
       <div id="play-list" class="play-list"></div>
     </section>
     <div class="workspace">
+      <section class="control-panel" aria-label="Comandi di riproduzione">
+        <div class="timeline-heading"><label for="seek">TIMELINE</label><output id="time-label">00:00 / 00:13</output></div>
+        <input id="seek" type="range" min="0" max="1260" value="0" aria-label="Posizione nella timeline">
+        <div class="transport">
+          <button id="restart" type="button" aria-label="Riavvia">↺</button>
+          <button id="previous" type="button" aria-label="Fase precedente">⏮</button>
+          <button id="play" class="play-button" type="button">▶ <span>Riproduci</span></button>
+          <button id="next" type="button" aria-label="Fase successiva">⏭</button>
+          <select id="speed" aria-label="Velocità di riproduzione"><option value="0.5">0,5×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
+        </div>
+      </section>
       <section class="pitch-panel" aria-label="Campo tattico">
         <div class="panel-heading"><div><span class="live-dot"></span><strong id="field-title">X1 / Uscita esterna</strong></div><span class="direction">DIREZIONE DI ATTACCO ↑</span></div>
         <div class="field-shell"><svg id="pitch" viewBox="0 0 700 850" role="img" aria-label="Campo da rugby con giocatori numerati e pallone"></svg></div>
         <div class="pitch-footer"><span><i class="legend player-mark"></i>ATTACCANTI</span><span><i class="legend ball-mark"></i>PALLONE</span><span><i class="legend route-mark"></i>TRAIETTORIE</span></div>
       </section>
-      <aside class="sidebar">
-        <section class="detail-panel">
-          <div class="section-label">ANALISI DELLA GIOCATA <span id="play-code">X1</span></div>
-          <div class="phase-count" id="phase-count">FASE 01</div>
-          <h2 id="phase-title">Mischia vinta</h2>
-          <p id="phase-description"></p>
-          <div id="possession" class="possession">PALLONE / MISCHIA</div>
-          <div class="timeline-heading"><label for="seek">TIMELINE</label><output id="time-label">00:00 / 00:13</output></div>
-          <input id="seek" type="range" min="0" max="1260" value="0" aria-label="Posizione nella timeline">
-          <div class="transport">
-            <button id="restart" type="button" aria-label="Riavvia">↺</button>
-            <button id="previous" type="button" aria-label="Fase precedente">⏮</button>
-            <button id="play" class="play-button" type="button">▶ <span>Riproduci</span></button>
-            <button id="next" type="button" aria-label="Fase successiva">⏭</button>
-            <select id="speed" aria-label="Velocità di riproduzione"><option value="0.5">0,5×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
-          </div>
-        </section>
-        <section class="phases-panel"><div class="section-label">FASI <span id="phase-total"></span></div><div id="phase-list" class="phase-list"></div></section>
-        <section class="options-panel"><div class="section-label">VISTA</div><label><input id="show-routes" type="checkbox" checked> Traiettorie</label><label><input id="show-roles" type="checkbox" checked> Ruoli</label><label><input id="highlight-ball" type="checkbox" checked> Evidenzia possesso</label></section>
-      </aside>
+      <section class="detail-panel">
+        <div class="section-label">ANALISI DELLA GIOCATA <span id="play-code">X1</span></div>
+        <div class="phase-count" id="phase-count">FASE 01</div>
+        <h2 id="phase-title">Mischia vinta</h2>
+        <p id="phase-description"></p>
+        <div id="possession" class="possession">PALLONE / MISCHIA</div>
+      </section>
+      <section class="phases-panel"><div class="section-label">FASI <span id="phase-total"></span></div><div id="phase-list" class="phase-list"></div></section>
+      <section class="options-panel"><div class="section-label">VISTA</div><label><input id="show-routes" type="checkbox" checked> Traiettorie</label><label><input id="show-roles" type="checkbox" checked> Ruoli</label><label><input id="highlight-ball" type="checkbox" checked> Evidenzia possesso</label></section>
     </div>
     <footer>TACTICS <span>·</span> Lavagna tattica rugby <span>·</span> Le giocate sono disponibili offline dopo la prima apertura online.</footer>
   </main>
