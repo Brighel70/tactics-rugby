@@ -50,17 +50,19 @@ export const PLAYS = {
   X2:{
     id:'X2',name:'Taglio interno',description:'Variante con l’11 che raddrizza prima della ricezione dal 13.',category:'trequarti',derivedFrom:'X1',duration,
     tracks:{...common,
-      9:track(9,[[0,568,435],[.7,566,434],[1.5,552,425],[2.02,537,414],[2.5,519,397],[3.4,485,375],[4.15,458,359],[4.65,439,350],[5.5,409,342],[5.98,400,340],[6.85,401,339],[7.5,402,340],[9.65,402,263],[12.6,402,209]]),
+      9:track(9,[[0,568,435],[.7,568,435],[1.5,552,425],[2.02,541,428],[2.5,526,431],[3.4,500,438],[4.15,470,445],[4.65,448,453],[5.5,420,469],[5.75,412,469],[5.98,405,466],[6.3,405,449],[6.85,405,416],[7.5,405,366],[8.4,405,306],[9.65,405,237],[12.6,405,183]]),
+      10:track(10,[[0,434,490],[1.45,427,483],[2,415,466],[2.9,381,440],[3.4,363,421],[4.15,337,402],[4.65,322,392],[6,315,383],[6.3,301,373],[6.85,275,355],[7.5,250,330],[8.4,241,307],[9.65,235,283],[12.6,230,271]]),
+      12:track(12,[[0,343,551],[1.45,350,540],[2,358,519],[2.9,366,480],[3.4,384,455],[4.15,423,410],[4.65,434,403],[6.5,445,386],[7.5,454,352],[8.4,463,316],[9.65,470,279],[12.6,480,220]]),
       11:track(11,[[0,568,591],[1,568,591],[1.5,545,582],[2.5,481,556],[3.4,418,532],[4.1,386,514],[4.35,379,508],[4.65,379,492],[5.15,379,470],[5.5,379,456],[5.98,379,438],[6.3,379,421],[6.85,379,388],[7.5,379,338],[8.4,379,278],[9.65,379,209],[12.6,379,155]]),
-      13:track(13,[[0,238,605],[1.45,238,585],[2,238,562],[2.9,238,520],[3.4,238,496],[4.15,238,463],[4.65,238,442],[5.5,238,425],[5.98,238,418],[7.5,238,375],[12.6,238,369]]),
+      13:track(13,[[0,238,605],[1.45,238,585],[2,238,562],[2.9,238,520],[3.4,238,496],[4.15,238,463],[4.65,238,442],[5.5,238,425],[5.98,238,418],[6.3,254,414],[6.85,280,400],[7.5,315,380],[8.4,340,307],[9.65,340,239],[12.6,340,185]]),
       15:track(15,[[0,240,743],[1.45,229,724],[2,210,690],[2.9,186,637],[3.4,174,599],[4.15,166,544],[4.65,164,516],[5.4,164,464],[6.3,164,425],[7.5,164,396],[9.65,164,362],[12.6,164,345]]),
       14:track(14,[[0,94,663],[1.45,94,651],[2,94,631],[2.9,94,601],[3.4,94,583],[4.15,94,558],[4.65,94,539],[5.4,94,508],[6.3,94,479],[7.5,94,448],[9.65,94,405],[12.6,94,385]])
     },
     passes:[...initialPasses,{start:5.5,end:5.98,from:13,to:11}],
     phases:[...initialPhases,
       {start:4.8,title:'L’11 raddrizza la corsa',description:'L’11 ha completato la diagonale ed è già orientato verso la meta. Il 13 avanza circa due metri.'},
-      {start:5.5,title:'Il 13 serve l’11',description:'Il passaggio arriva all’indietro. L’11 riceve già in accelerazione verticale; il 9 ha seguito una diagonale lenta davanti al 12 e si trova 2–3 metri alla sua destra.'},
-      {start:6.85,title:'Taglio interno',description:'L’11 prosegue diritto nello spazio creato dall’incrocio, supera il 9 e lo ritrova in sostegno sulla corsia alla propria destra.'}
+      {start:5.5,title:'Il 13 serve l’11',description:'L’11 riceve già orientato verso la meta. Il 9 arriva dalla sinistra della mischia, 2–3 metri alla sua destra e poco dietro, senza fermarsi.'},
+      {start:6.85,title:'Taglio interno',description:'L’11 accelera diritto. Il 9 lo accompagna sulla destra, il 13 converge in sostegno alla sua sinistra e il 12 continua la corsa alla destra del 9.'}
     ]
   }
 };
